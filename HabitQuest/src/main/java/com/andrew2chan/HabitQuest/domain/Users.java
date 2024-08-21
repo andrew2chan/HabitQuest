@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -24,7 +25,15 @@ public class Users {
     public String password;
     public String salt;
     public String name;
+    public long streak = 0;
+    public Date last_streak;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Habits> habits = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    public Gamifications gamification;
+
+    @ManyToMany(mappedBy = "users")
+    public List<DefaultHabits> defaulthabits = new ArrayList<>();
 }
