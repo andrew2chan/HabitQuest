@@ -33,7 +33,4 @@ public class Users {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     public Gamifications gamification;
-
-    @ManyToMany(mappedBy = "users")
-    public List<DefaultHabits> defaulthabits = new ArrayList<>();
 }
