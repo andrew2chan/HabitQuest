@@ -1,6 +1,10 @@
-package com.andrew2chan.HabitQuest.domain;
+package com.andrew2chan.HabitQuest.domain.dtos;
 
-import jakarta.persistence.*;
+import com.andrew2chan.HabitQuest.domain.Gamifications;
+import com.andrew2chan.HabitQuest.domain.Habits;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,11 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "users")
-public class Users {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UsersDTO {
     public Long id;
 
     public String emailAddress;
@@ -27,9 +27,7 @@ public class Users {
     public long streak = 0;
     public Date last_streak;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Habits> habits = new ArrayList<>();
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     public Gamifications gamification;
 }
