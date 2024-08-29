@@ -6,4 +6,5 @@ import com.andrew2chan.HabitQuest.domain.dtos.UsersDTO;
 
 public interface UserService {
     public Users createUser(Users user);
+    public void deleteUser(Long id);
 }

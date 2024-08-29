@@ -8,9 +8,7 @@ import com.andrew2chan.HabitQuest.mappers.Mapper;
 import com.andrew2chan.HabitQuest.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
@@ -24,13 +22,17 @@ public class UserController {
         this.mapper = mapper;
     }
 
-    @PostMapping(path = "/createuser")
+    @PostMapping(path = "/user")
     public ResponseEntity<UsersDTO> createUser(@RequestBody CreateUsersDTO createUsersDTO) {
-        System.out.println(createUsersDTO);
         Users newUserEntity = createMapper.mapCreateUsersDTOToEntity(createUsersDTO);
         Users savedUser = userService.createUser(newUserEntity);
         UsersDTO userDTOToReturn = mapper.mapEntityToDTO(savedUser);
 
         return new ResponseEntity<>(userDTOToReturn, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(path = "/user/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
     }
 }
