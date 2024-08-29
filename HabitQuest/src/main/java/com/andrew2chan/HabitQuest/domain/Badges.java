@@ -21,7 +21,8 @@ public class Badges {
 
     public String name;
     public String description;
-    public long xpRequirements;
+    public Long levelReached;
+    public Long streakDays;
 
     @ManyToMany
     @JoinTable(

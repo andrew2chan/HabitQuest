@@ -25,7 +25,7 @@ public class Users {
     public String hashedPassword;
     public String name;
     public long streak = 0;
-    public Date last_streak_date;
+    public Date lastStreakDate;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Habits> habits = new ArrayList<>();
