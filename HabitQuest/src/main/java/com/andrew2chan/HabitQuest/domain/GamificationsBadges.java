@@ -6,24 +6,24 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Builder
-@Table(name = "badges")
-public class Badges {
+@Entity
+@Table(name = "gamifications_badges")
+public class GamificationsBadges {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    public String name;
-    public String description;
-    public Long levelReached;
-    public Long streakDays;
+    @ManyToOne
+    @JoinColumn(name = "gamifications_id")
+    public Gamifications gamifications;
 
-    @OneToMany(mappedBy = "badges")
-    public List<GamificationsBadges> gamificationsBadges;
+    @ManyToOne
+    @JoinColumn(name = "badges_id")
+    public Badges badges;
+
+    public boolean badgeAchieved = false;
 }

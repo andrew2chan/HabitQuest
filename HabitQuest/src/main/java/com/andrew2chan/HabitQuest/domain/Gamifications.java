@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,8 +21,8 @@ public class Gamifications {
 
     public long xp = 0;
 
-    @ManyToMany(mappedBy = "gamifications")
-    public List<Badges> badges;
+    @OneToMany(mappedBy = "gamifications")
+    public List<GamificationsBadges> gamificationsBadges;
 
     @OneToOne
     @JoinColumn(name = "user_id")
